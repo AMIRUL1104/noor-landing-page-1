@@ -1,22 +1,27 @@
 {
-  "name": "noor",
-  "version": "0.1.0",
-  "private": true,
+  "name": "noor-hoodie-landing",
+  "version": "1.0.0",
+  "description": "NOOR Premium Export Quality Hoodie landing page",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "test": "node scripts/test-api.mjs"
   },
   "dependencies": {
-    "next": "16.4.3",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "mongodb": "^7.7.0",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@tailwindcss/turbopack": "^4",
-    "eslint": "^9",
-    "eslint-config-next": "16.4.3",
-    "tailwindcss": "^4"
-  }
+    "@tailwindcss/postcss": "^4.3.3",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.3",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^4.3.3"
+  },
+  "private": true
 }
