@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata = {
   metadataBase: process.env.SITE_URL ? new URL(process.env.SITE_URL) : undefined,
@@ -8,15 +9,14 @@ export const metadata = {
 
 export const viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
-// Runs before first paint: restores saved (or system) theme and language, so nothing flashes.
-const initScript = `(function(){var d=document.documentElement,t,l;try{t=localStorage.getItem("noor-theme");l=localStorage.getItem("noor-lang")}catch(e){}
-if(!t)t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";d.dataset.theme=t;d.lang=l==="en"?"en":"bn"})();`;
-
 export default function RootLayout({ children }) {
   return (
     <html lang="bn" data-theme="light" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: initScript }} />
+        {/* Inline script restored from localStorage before first paint */}
+        <Script strategy="beforeInteractive" id="noor-init-script">
+          {`(function(){var d=document.documentElement,t,l;try{t=localStorage.getItem("noor-theme");l=localStorage.getItem("noor-lang")}catch(e){}if(!t)t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";d.dataset.theme=t;d.lang=l==="en"?"en":"bn"})();`}
+        </Script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}

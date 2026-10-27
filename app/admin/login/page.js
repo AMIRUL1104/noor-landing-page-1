@@ -1,9 +1,4 @@
-"use client";
-
 import { login } from "@/lib/admin/auth";
-import { T } from "@/lib/i18n";
-import { useLang } from "@/lib/prefs";
-import { useSearchParams } from "next/navigation";
 
 const ERROR_MESSAGES = {
   invalid_request: "অনুরোধ সঠিক নয়। আবার চেষ্টা করুন।",
@@ -11,11 +6,10 @@ const ERROR_MESSAGES = {
   rate_limited: "অনেকবার চেষ্টা করা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন, অথবা কল করুন।",
 };
 
-export default function LoginPage() {
-  const lang = useLang();
-  const t = T[lang];
-  const searchParams = useSearchParams();
-  const errorCode = searchParams.get("error");
+export default async function LoginPage({ searchParams }) {
+  const resolved = await searchParams;
+  const params = Object.fromEntries(Object.entries(resolved || {}));
+  const errorCode = params.error;
   const error = errorCode ? ERROR_MESSAGES[errorCode] || ERROR_MESSAGES.invalid_credentials : null;
 
   return (
