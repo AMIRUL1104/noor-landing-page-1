@@ -29,7 +29,7 @@ export default function Filters() {
         className={`px-3 py-1.5 rounded-xs border text-[13px] ${
           currentStatus === "all"
             ? "border-gold bg-gold text-black"
-            : "border-line bg-paper text-ink hover:text-gold max-md:text-gold"
+            : "border-line bg-paper text-ink sm:hover:text-gold max-sm:text-gold"
         }`}
       >
         সব
@@ -41,7 +41,7 @@ export default function Filters() {
           className={`px-3 py-1.5 rounded-xs border text-[13px] ${
             currentStatus === s.value
               ? "border-gold bg-gold text-black"
-            : "border-line bg-paper text-ink hover:text-gold max-md:text-gold"
+            : "border-line bg-paper text-ink sm:hover:text-gold max-sm:text-gold"
           }`}
         >
           {s.label[lang] || s.label.en}

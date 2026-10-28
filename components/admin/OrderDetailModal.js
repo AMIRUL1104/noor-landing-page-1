@@ -84,7 +84,7 @@ export default function OrderDetailModal({ isOpen, onClose, orderId }) {
                 <span className="font-semibold">ফোন:</span>{" "}
                 <a
                   href={`tel:${order.customer.phone}`}
-                  className="text-gold hover:underline max-md:underline"
+                  className="text-gold sm:hover:underline max-sm:underline"
                 >
                   {order.customer?.phone || "—"}
                 </a>

@@ -20,7 +20,7 @@ export default function AdminHeader() {
       <div className="wrap flex h-[60px] items-center justify-between gap-3 md:h-[66px] px-3.5 md:px-5">
         <a
           href="/admin"
-          className="no-underline text-[20px] font-serif font-bold hover:text-gold max-md:text-gold"
+          className="no-underline text-[20px] font-serif font-bold sm:hover:text-gold max-sm:text-gold"
         >
           NOOR Admin
         </a>
@@ -33,7 +33,7 @@ export default function AdminHeader() {
           <form action={logout} style={{ display: "inline" }}>
             <button
               type="submit"
-              className="  text-[15px] hover:text-ink max-md:text-ink no-underline "
+              className="  text-[15px] sm:hover:text-ink max-sm:text-ink no-underline "
             >
               Log Out
             </button>

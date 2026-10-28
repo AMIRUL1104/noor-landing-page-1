@@ -70,7 +70,7 @@ export default function OrderList({ search, status }) {
               return (
                 <tr
                   key={order.orderId}
-                  className="hover:bg-alt max-md:bg-alt transition-colors"
+                  className="sm:hover:bg-alt max-sm:bg-alt transition-colors"
                 >
                   <td className="p-3 text-ink font-medium">
                     #{order.orderId}
@@ -81,7 +81,7 @@ export default function OrderList({ search, status }) {
                   <td className="p-3 text-ink">
                     <a
                       href={`tel:${order.customer.phone}`}
-                      className="text-gold hover:underline max-md:underline"
+                      className="text-gold sm:hover:underline max-sm:underline"
                     >
                       {order.customer?.phone || "—"}
                     </a>
@@ -122,7 +122,7 @@ export default function OrderList({ search, status }) {
                   className={`px-3 py-1.5 rounded-xs border text-[13px] ${
                     p === page
                       ? "border-gold bg-gold text-black"
-                      : "border-line bg-paper text-ink hover:text-gold max-md:text-gold"
+                      : "border-line bg-paper text-ink sm:hover:text-gold max-sm:text-gold"
                   }`}
                 >
                   {p}
@@ -151,7 +151,7 @@ export default function OrderList({ search, status }) {
                   </p>
                   <a
                     href={`tel:${order.customer?.phone}`}
-                    className="text-[13px] text-gold hover:underline max-md:underline block truncate"
+                    className="text-[13px] text-gold sm:hover:underline max-sm:underline block truncate"
                   >
                     {order.customer?.phone || "—"}
                   </a>
@@ -175,7 +175,7 @@ export default function OrderList({ search, status }) {
                     setSelectedOrderId(order.orderId);
                     setIsModalOpen(true);
                   }}
-                  className="text-[12px] px-2.5 py-1.5 rounded-xs border border-gold text-gold hover:bg-gold max-md:bg-gold hover:text-black max-md:text-black transition-colors shrink-0"
+                  className="text-[12px] px-2.5 py-1.5 rounded-xs border border-gold text-gold sm:hover:bg-gold max-sm:bg-gold sm:hover:text-black max-sm:text-black transition-colors shrink-0"
                 >
                   বিস্তারিত
                 </button>

@@ -3,7 +3,7 @@ import Bi from "./Bi";
 import OrderButton from "./OrderButton";
 import { PHONE_DISPLAY, PHONE_INTL, T, nf } from "@/lib/i18n";
 
-const light = "hover:border-[#FAF8F2] max-md:border-[#FAF8F2] hover:bg-[#FAF8F2] max-md:bg-[#FAF8F2] hover:text-[#111] max-md:text-[#111]";
+const light = "sm:hover:border-[#FAF8F2] max-sm:border-[#FAF8F2] sm:hover:bg-[#FAF8F2] max-sm:bg-[#FAF8F2] sm:hover:text-[#111] max-sm:text-[#111]";
 
 export default function FooterCta() {
   return (

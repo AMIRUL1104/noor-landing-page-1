@@ -76,7 +76,7 @@ html[lang="bn"] [data-l="en"], html[lang="en"] [data-l="bn"] { display: none !im
   @media (min-width: 421px) { .ib { min-width: 42px; height: 42px; padding: 0 10px; } }
 
   /* Mobile (touch): hover-এর চূড়ান্ত রূপটাই ডিফল্ট */
-  @media (max-width: 760px) {
+  @media (max-width: 639px) {
     .btn { background: var(--ink); border-color: var(--ink); color: var(--paper); }
     .btn-o { background: var(--ink); color: var(--paper); border-color: var(--ink); }
     .ib { border-color: var(--ink); }
@@ -100,7 +100,7 @@ html[lang="bn"] [data-l="en"], html[lang="en"] [data-l="bn"] { display: none !im
   }
   @media (min-width: 421px) { .stick { gap: 12px; padding-inline: max(16px, calc((100% - 1160px) / 2)); } }
   .site-footer { background: #111; color: #FAF8F2; padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
-  @media (max-width: 760px) { .site-footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); } }
+  @media (max-width: 639px) { .site-footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); } }
 
   .pop { animation: pop .25s; }
   @keyframes pop { from { opacity: 0; transform: translateY(12px); } }

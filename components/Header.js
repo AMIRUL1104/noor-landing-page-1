@@ -17,9 +17,9 @@ export default function Header() {
         </a>
         <div className="flex items-center gap-[22px]">
           <nav className="hidden gap-6 text-[15.5px] text-mute lg:flex">
-            <a className="no-underline hover:text-ink max-md:text-ink" href="#details"><Bi k="nav1" /></a>
-            <a className="no-underline hover:text-ink max-md:text-ink" href="#delivery"><Bi k="nav2" /></a>
-            <a className="no-underline hover:text-ink max-md:text-ink" href="#faq"><Bi k="nav3" /></a>
+            <a className="no-underline sm:hover:text-ink max-sm:text-ink" href="#details"><Bi k="nav1" /></a>
+            <a className="no-underline sm:hover:text-ink max-sm:text-ink" href="#delivery"><Bi k="nav2" /></a>
+            <a className="no-underline sm:hover:text-ink max-sm:text-ink" href="#faq"><Bi k="nav3" /></a>
           </nav>
           <div className="flex gap-1.5 x4:gap-2">
             <button type="button" className="ib" onClick={toggleTheme} aria-label={theme === "dark" ? t.light : t.dark}>
