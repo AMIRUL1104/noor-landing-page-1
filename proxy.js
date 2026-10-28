@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 
 /**
- * Next.js middleware (Next.js 16-এ ಸ //{
- * শুধুমাত্র /admin/:path*-এ সক্রিয়।
+ * Next.js proxy (Next.js 16: middleware renamed to proxy).
+ * শুধুমাত্র /admin/:path*-এ সক্রিয়।
  * কুকি নেইলে /admin/login-এ রিডাইরেক্ট করে।
  * /admin-এর সব রেসপন্সে no-store ও noindex হেডার যোগ করে।
  */
-export function middleware(req) {
+export function proxy(req) {
   const { pathname } = req.nextUrl;
 
   // শুধুমাত্র /admin**-এর জন্য সুরক্ষা

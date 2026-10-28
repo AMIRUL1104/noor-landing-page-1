@@ -2,12 +2,10 @@
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { ORDER_STATUSES } from "@/lib/orderStatus";
-import { T } from "@/lib/i18n";
 import { useLang } from "@/lib/prefs";
 
 export default function Filters() {
   const lang = useLang();
-  const t = T[lang];
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -31,7 +29,7 @@ export default function Filters() {
         className={`px-3 py-1.5 rounded-xs border text-[13px] ${
           currentStatus === "all"
             ? "border-gold bg-gold text-black"
-            : "border-line bg-paper text-ink hover:text-gold"
+            : "border-line bg-paper text-ink hover:text-gold max-md:text-gold"
         }`}
       >
         সব
@@ -43,7 +41,7 @@ export default function Filters() {
           className={`px-3 py-1.5 rounded-xs border text-[13px] ${
             currentStatus === s.value
               ? "border-gold bg-gold text-black"
-            : "border-line bg-paper text-ink hover:text-gold"
+            : "border-line bg-paper text-ink hover:text-gold max-md:text-gold"
           }`}
         >
           {s.label[lang] || s.label.en}

@@ -2,15 +2,13 @@
 
 import { getOrders } from "@/lib/admin/orders";
 import StatusSelect from "@/components/admin/StatusSelect";
-import { T, tk } from "@/lib/i18n";
+import { tk } from "@/lib/i18n";
 import { useLang } from "@/lib/prefs";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import OrderDetailModal from "@/components/admin/OrderDetailModal";
 
 export default function OrderList({ search, status }) {
   const lang = useLang();
-  const t = T[lang];
   const [result, setResult] = useState(null);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,15 +70,10 @@ export default function OrderList({ search, status }) {
               return (
                 <tr
                   key={order.orderId}
-                  className="hover:bg-alt transition-colors"
+                  className="hover:bg-alt max-md:bg-alt transition-colors"
                 >
                   <td className="p-3 text-ink font-medium">
-                    <Link
-                      href={`/admin/orders/${order.orderId}`}
-                      className="text-gold hover:underline"
-                    >
-                      #{order.orderId}
-                    </Link>
+                    #{order.orderId}
                   </td>
                   <td className="p-3 text-ink">
                     {order.customer?.name || "—"}
@@ -88,7 +81,7 @@ export default function OrderList({ search, status }) {
                   <td className="p-3 text-ink">
                     <a
                       href={`tel:${order.customer.phone}`}
-                      className="text-gold hover:underline"
+                      className="text-gold hover:underline max-md:underline"
                     >
                       {order.customer?.phone || "—"}
                     </a>
@@ -129,7 +122,7 @@ export default function OrderList({ search, status }) {
                   className={`px-3 py-1.5 rounded-xs border text-[13px] ${
                     p === page
                       ? "border-gold bg-gold text-black"
-                      : "border-line bg-paper text-ink hover:text-gold"
+                      : "border-line bg-paper text-ink hover:text-gold max-md:text-gold"
                   }`}
                 >
                   {p}
@@ -158,7 +151,7 @@ export default function OrderList({ search, status }) {
                   </p>
                   <a
                     href={`tel:${order.customer?.phone}`}
-                    className="text-[13px] text-gold hover:underline block truncate"
+                    className="text-[13px] text-gold hover:underline max-md:underline block truncate"
                   >
                     {order.customer?.phone || "—"}
                   </a>
@@ -182,7 +175,7 @@ export default function OrderList({ search, status }) {
                     setSelectedOrderId(order.orderId);
                     setIsModalOpen(true);
                   }}
-                  className="text-[12px] px-2.5 py-1.5 rounded-xs border border-gold text-gold hover:bg-gold hover:text-black transition-colors shrink-0"
+                  className="text-[12px] px-2.5 py-1.5 rounded-xs border border-gold text-gold hover:bg-gold max-md:bg-gold hover:text-black max-md:text-black transition-colors shrink-0"
                 >
                   বিস্তারিত
                 </button>

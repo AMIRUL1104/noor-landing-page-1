@@ -2,13 +2,11 @@
 
 import { setOrderStatus } from "@/app/admin/actions";
 import { ORDER_STATUSES } from "@/lib/orderStatus";
-import { T } from "@/lib/i18n";
 import { useLang } from "@/lib/prefs";
 import { useTransition, useState } from "react";
 
 export default function StatusSelect({ orderId, currentStatus }) {
   const lang = useLang();
-  const t = T[lang];
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState(null);
 

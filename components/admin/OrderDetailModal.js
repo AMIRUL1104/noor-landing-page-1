@@ -43,9 +43,20 @@ export default function OrderDetailModal({ isOpen, onClose, orderId }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
       <div className="bg-paper rounded-sm border border-line max-w-[500px] w-full max-h-[90vh] overflow-y-auto">
         <div className="p-4 border-b border-line flex justify-between items-center">
-          <h2 className="text-[18px] font-serif font-bold">
-            অর্ডার #{orderId}
-          </h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-[18px] font-serif font-bold">
+              অর্ডার #{orderId}
+            </h2>
+            {order && (
+              <span
+                className={`inline-block px-2 py-0.5 rounded-xs text-[12px] font-semibold border ${getStatusColor(
+                  order.status || "pending"
+                )}`}
+              >
+                {getStatusLabel(order.status || "pending", lang)}
+              </span>
+            )}
+          </div>
           <button
             onClick={onClose}
             className="text-[20px] font-bold text-gold no-underline"
@@ -73,7 +84,7 @@ export default function OrderDetailModal({ isOpen, onClose, orderId }) {
                 <span className="font-semibold">ফোন:</span>{" "}
                 <a
                   href={`tel:${order.customer.phone}`}
-                  className="text-gold hover:underline"
+                  className="text-gold hover:underline max-md:underline"
                 >
                   {order.customer?.phone || "—"}
                 </a>

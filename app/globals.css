@@ -75,6 +75,13 @@ html[lang="bn"] [data-l="en"], html[lang="en"] [data-l="bn"] { display: none !im
   .ib:hover { border-color: var(--ink); }
   @media (min-width: 421px) { .ib { min-width: 42px; height: 42px; padding: 0 10px; } }
 
+  /* Mobile (touch): hover-এর চূড়ান্ত রূপটাই ডিফল্ট */
+  @media (max-width: 760px) {
+    .btn { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+    .btn-o { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .ib { border-color: var(--ink); }
+  }
+
   .h2 { font-size: clamp(24px, 7vw, 32px); margin-bottom: .6rem; }
   @media (min-width: 761px) { .h2 { font-size: clamp(27px, 4vw, 40px); } }
   .hero-h1 { font-size: clamp(26px, 8vw, 40px); margin-bottom: 1rem; }
