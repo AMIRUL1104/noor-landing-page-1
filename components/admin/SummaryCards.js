@@ -31,16 +31,16 @@ export default function SummaryCards() {
   };
 
   return (
-    <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+    <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
       {CARD_CONFIG.map((card) => (
         <div
           key={card.key}
-          className="bg-paper rounded-sm border border-line p-4"
+          className="bg-paper rounded-sm border border-line p-3 md:p-4"
         >
-          <p className={`text-[13px] ${card.color} font-semibold mb-1`}>
+          <p className={`text-[12px] md:text-[13px] ${card.color} font-semibold mb-1`}>
             {labels[card.key] || card.key}
           </p>
-          <p className="text-[24px] font-serif font-bold text-ink">
+          <p className="text-[20px] md:text-[24px] font-serif font-bold text-ink">
             {summary?.[card.key] ?? 0}
           </p>
         </div>
