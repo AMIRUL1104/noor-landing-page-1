@@ -1,7 +1,7 @@
 import AdminNav from "@/components/admin/AdminNav";
 import SearchBox from "@/components/admin/SearchBox";
 import Filters from "@/components/admin/Filters";
-import OrderList from "@/components/admin/OrderList";
+import AdminOrdersClient from "@/components/admin/AdminOrdersClient";
 
 export default async function AdminOrdersPage({ searchParams }) {
   const resolved = await searchParams;
@@ -21,7 +21,7 @@ export default async function AdminOrdersPage({ searchParams }) {
         <Filters />
       </div>
 
-      <OrderList search={search} status={status} />
+      <AdminOrdersClient search={search} status={status} />
     </div>
   );
 }

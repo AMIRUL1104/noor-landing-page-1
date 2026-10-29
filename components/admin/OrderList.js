@@ -7,20 +7,45 @@ import { useLang } from "@/lib/prefs";
 import { useEffect, useState } from "react";
 import OrderDetailModal from "@/components/admin/OrderDetailModal";
 
-export default function OrderList({ search, status }) {
+export default function OrderList({ search, status, refreshKey }) {
   const lang = useLang();
   const [result, setResult] = useState(null);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getOrders({ page: 1, search, status }).then(setResult);
-  }, [search, status]);
+    let cancelled = false;
+    getOrders({ page: 1, search, status })
+      .then((res) => {
+        if (cancelled) return;
+        if (!res) {
+          setError("সেশন পাওয়া যায়নি। আবার লগইন করুন।");
+          return;
+        }
+        setError(null);
+        setResult(res);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setError("অর্ডার লোড করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [search, status, refreshKey]);
 
-  if (!result) {
+  if (error) {
     return (
       <div className="bg-paper rounded-sm border border-line p-6">
-        <p className="text-mute">লোড হচ্ছে...</p>
+        <p className="text-err">{error}</p>
+        <button
+          type="button"
+          onClick={() => setRefreshKey((k) => k + 1)}
+          className="mt-3 btn"
+        >
+          আবার চেষ্টা করুন
+        </button>
       </div>
     );
   }
@@ -28,7 +53,7 @@ export default function OrderList({ search, status }) {
   if (!result) {
     return (
       <div className="bg-paper rounded-sm border border-line p-6">
-        <p className="text-err">অনুমতি নেই। লগইন করুন。</p>
+        <p className="text-mute">লোড হচ্ছে...</p>
       </div>
     );
   }

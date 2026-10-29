@@ -18,6 +18,7 @@ const CACHE_IMMUTABLE = "public, max-age=31536000, immutable";
 const CACHE_STATIC = "public, max-age=31536000, immutable";
 
 const nextConfig = {
+  reactStrictMode: false,
   poweredByHeader: false,
   compress: true,
   images: {

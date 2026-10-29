@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PRODUCT, calcTotals } from "@/lib/products";
 import { PHONE_DISPLAY, PHONE_INTL, T, nf, qtyLabel, tk } from "@/lib/i18n";
@@ -29,7 +28,7 @@ function uuid() {
   return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
 }
 
-export default function OrderModal() {
+export default function OrderModal({ onSuccess }) {
   const { isOpen, closeModal, colorIdx, setColorIdx } = useOrder();
   const lang = useLang();
   const t = T[lang];
@@ -110,6 +109,7 @@ export default function OrderModal() {
         keyRef.current = null;
         setStatus("success");
         bodyRef.current?.scrollTo(0, 0);
+        onSuccess?.(data);
         return;
       }
       if (res.status === 400 && data?.code === "INVALID") {
@@ -180,7 +180,9 @@ export default function OrderModal() {
                   <label key={c.id} className="relative grow basis-[calc(50%_-_4px)] md:grow-0 md:basis-auto">
                     <input type="radio" name="color" className="peer absolute inset-0 size-full cursor-pointer opacity-0" checked={colorIdx === i} onChange={() => setColorIdx(i)} />
                     <span className={`${chip} py-1 pl-1 pr-3`}>
-                      <span className="relative h-11 w-9 flex-none"><Image src={c.img} alt="" fill sizes="36px" className="object-cover" /></span>
+                      <span className="relative h-11 w-9 flex-none overflow-hidden rounded-xs">
+                        <img src={c.img} alt="" width={36} height={44} className="size-full object-cover" loading="lazy" />
+                      </span>
                       {c[lang]}
                     </span>
                   </label>

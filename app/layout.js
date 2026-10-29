@@ -1,5 +1,4 @@
 import "./globals.css";
-import Script from "next/script";
 import { Cormorant_Garamond, Hind_Siliguri, Noto_Serif_Bengali } from "next/font/google";
 
 const cormorant = Cormorant_Garamond({
@@ -41,9 +40,13 @@ export default function RootLayout({ children }) {
     >
       <head>
         {/* Inline script restored from localStorage before first paint */}
-        <Script strategy="beforeInteractive" id="noor-init-script">
-          {`(function(){var d=document.documentElement,t,l;try{t=localStorage.getItem("noor-theme");l=localStorage.getItem("noor-lang")}catch(e){}if(!t)t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";d.dataset.theme=t;d.lang=l==="en"?"en":"bn"})();`}
-        </Script>
+        <script
+          id="noor-init-script"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var d=document.documentElement,t,l;try{t=localStorage.getItem("noor-theme");l=localStorage.getItem("noor-lang")}catch(e){}if(!t)t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";d.dataset.theme=t;d.lang=l==="en"?"en":"bn"})();`,
+          }}
+          suppressHydrationWarning
+        />
       </head>
       <body>{children}</body>
     </html>
