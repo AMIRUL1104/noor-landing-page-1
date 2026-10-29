@@ -14,11 +14,8 @@
 :root {
   --ink: #111111; --paper: #FAF8F2; --alt: #EFE9DA; --card: #FFFFFF;
   --gold: #B89A5A; --gd: #6B5322; --mute: #46433B; --line: rgba(17, 17, 17, .24); --err: #A81E16;
-  --sans: "Hind Siliguri", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --serif: "Noto Serif Bengali", "Cormorant Garamond", Georgia, serif;
-  --disp: "Cormorant Garamond", Georgia, serif;
 }
-:root[lang="en"] { --serif: "Cormorant Garamond", "Noto Serif Bengali", Georgia, serif; }
+:root[lang="en"] { --serif: var(--font-serif-bn); }
 :root[data-theme="dark"] {
   --ink: #FAF8F2; --paper: #111111; --alt: #1A1916; --card: #1E1D1A;
   --gd: #D1B478; --mute: #CFCABD; --line: rgba(250, 248, 242, .28); --err: #FF9A90;
@@ -27,7 +24,7 @@
 @theme inline {
   --color-ink: var(--ink); --color-paper: var(--paper); --color-alt: var(--alt); --color-card: var(--card);
   --color-gold: var(--gold); --color-gd: var(--gd); --color-mute: var(--mute); --color-line: var(--line); --color-err: var(--err);
-  --font-sans: var(--sans); --font-serif: var(--serif); --font-disp: var(--disp);
+  --font-sans: var(--font-sans); --font-serif: var(--font-serif-bn); --font-disp: var(--font-disp);
 }
 
 /* language switching for server-rendered bilingual text */

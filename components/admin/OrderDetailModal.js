@@ -1,6 +1,5 @@
 "use client";
 
-import { getOrderById } from "@/lib/admin/orders";
 import { PRODUCT, calcTotals } from "@/lib/products";
 import { tk } from "@/lib/i18n";
 import { getStatusLabel, getStatusColor } from "@/lib/orderStatus";
@@ -8,21 +7,15 @@ import StatusSelect from "@/components/admin/StatusSelect";
 import { setOrderStatus } from "@/app/admin/actions";
 import { useEffect, useState, useTransition } from "react";
 
-export default function OrderDetailModal({ isOpen, onClose, orderId }) {
-  const [order, setOrder] = useState(null);
+export default function OrderDetailModal({ isOpen, onClose, order }) {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState(null);
   const lang = "bn";
 
-  useEffect(() => {
-    if (isOpen && orderId) {
-      getOrderById(orderId).then(setOrder);
-    }
-  }, [isOpen, orderId]);
-
   const handleStatusChange = (newStatus) => {
+    if (!order) return;
     const formData = new FormData();
-    formData.set("orderId", orderId);
+    formData.set("orderId", order.orderId);
     formData.set("status", newStatus);
 
     startTransition(() => {
@@ -30,8 +23,11 @@ export default function OrderDetailModal({ isOpen, onClose, orderId }) {
       setOrderStatus(formData).then((result) => {
         if (result?.error) {
           setError("স্ট্যাটাস আপডেট করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
-        } else {
-          getOrderById(orderId).then(setOrder);
+        } else if (order) {
+          // Update local order state with new status
+          setError(null);
+          // We could refetch here if needed, but for now just close on success
+          // The parent will refetch the list
         }
       });
     });
@@ -45,7 +41,7 @@ export default function OrderDetailModal({ isOpen, onClose, orderId }) {
         <div className="p-4 border-b border-line flex justify-between items-center">
           <div className="flex items-center gap-2">
             <h2 className="text-[18px] font-serif font-bold">
-              অর্ডার #{orderId}
+              অর্ডার #{order?.orderId}
             </h2>
             {order && (
               <span
@@ -101,7 +97,7 @@ export default function OrderDetailModal({ isOpen, onClose, orderId }) {
                 অর্ডার ডিটেইল
               </h3>
               <p className="mb-2">
-                <span className="font-semibold">অর্ডার আইডি:</span> {orderId}
+                <span className="font-semibold">অর্ডার আইডি:</span> {order.orderId}
               </p>
               <p className="mb-2">
                 <span className="font-semibold">রং:</span>{" "}
@@ -131,10 +127,12 @@ export default function OrderDetailModal({ isOpen, onClose, orderId }) {
               <h3 className="text-[16px] font-serif font-bold mb-3">
                 স্ট্যাটাস আপডেট
               </h3>
-              <StatusSelect
-                orderId={orderId}
-                currentStatus={order.status || "pending"}
-              />
+              {order && (
+                <StatusSelect
+                  orderId={order.orderId}
+                  currentStatus={order.status || "pending"}
+                />
+              )}
               {isPending && (
                 <span className="text-[11px] text-mute">আপডেট হচ্ছে...</span>
               )}

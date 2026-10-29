@@ -12,8 +12,20 @@ export default function Header() {
     <header className="sticky top-[env(safe-area-inset-top,0px)] z-20 border-b border-line bg-paper">
       <div className="wrap flex h-[60px] items-center justify-between gap-3 md:h-[66px]">
         <a href="#top" aria-label="NOOR" className="min-w-0">
-          <Image src="/logo/noor-black.png" alt="NOOR" width={900} height={251} priority className="h-6 w-auto x3:h-7 md:h-[34px] dark:hidden" />
-          <Image src="/logo/noor-white.png" alt="NOOR" width={900} height={251} priority className="hidden h-6 w-auto x3:h-7 md:h-[34px] dark:block" />
+          <Image
+            src="/logo/noor-black.png"
+            alt="NOOR"
+            width={180}
+            height={50}
+            className="h-[34px] w-auto dark:hidden"
+          />
+          <Image
+            src="/logo/noor-white.png"
+            alt="NOOR"
+            width={180}
+            height={50}
+            className="hidden h-[34px] w-auto dark:block"
+          />
         </a>
         <div className="flex items-center gap-[22px]">
           <nav className="hidden gap-6 text-[15.5px] text-mute lg:flex">

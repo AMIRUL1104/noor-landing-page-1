@@ -1,6 +1,6 @@
 import SummaryCards from "@/components/admin/SummaryCards";
 import AdminNav from "@/components/admin/AdminNav";
-import AnalyticsCharts from "@/components/admin/AnalyticsCharts";
+import { AnalyticsCharts } from "@/components/ClientWrappers";
 
 export default function AdminPage() {
   return (

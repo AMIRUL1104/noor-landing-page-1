@@ -10,7 +10,7 @@ import OrderDetailModal from "@/components/admin/OrderDetailModal";
 export default function OrderList({ search, status }) {
   const lang = useLang();
   const [result, setResult] = useState(null);
-  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function OrderList({ search, status }) {
   if (!result) {
     return (
       <div className="bg-paper rounded-sm border border-line p-6">
-        <p className="text-err">অনুমতি নেই। লগইন করুন।</p>
+        <p className="text-err">অনুমতি নেই। লগইন করুন。</p>
       </div>
     );
   }
@@ -42,6 +42,16 @@ export default function OrderList({ search, status }) {
       </div>
     );
   }
+
+  const openModal = (order) => {
+    setSelectedOrder(order);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedOrder(null);
+  };
 
   return (
     <>
@@ -171,10 +181,7 @@ export default function OrderList({ search, status }) {
                 </p>
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedOrderId(order.orderId);
-                    setIsModalOpen(true);
-                  }}
+                  onClick={() => openModal(order)}
                   className="text-[12px] px-2.5 py-1.5 rounded-xs border border-gold text-gold sm:hover:bg-gold max-sm:bg-gold sm:hover:text-black max-sm:text-black transition-colors shrink-0"
                 >
                   বিস্তারিত
@@ -195,11 +202,8 @@ export default function OrderList({ search, status }) {
 
       <OrderDetailModal
         isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          getOrders({ page: 1, search, status }).then(setResult);
-        }}
-        orderId={selectedOrderId}
+        onClose={closeModal}
+        order={selectedOrder}
       />
     </>
   );

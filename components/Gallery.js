@@ -17,6 +17,13 @@ export default function Gallery() {
   const startX = useRef(null);
   const go = (i) => setColorIdx((i + colors.length) % colors.length);
 
+  // Compute loaded indices during render - current, prev, next
+  const loadedIndices = new Set([
+    cur,
+    (cur - 1 + colors.length) % colors.length,
+    (cur + 1) % colors.length,
+  ]);
+
   // keep the selected thumbnail centred inside the horizontally scrolling strip
   useEffect(() => {
     const box = strip.current;
@@ -38,7 +45,7 @@ export default function Gallery() {
           startX.current = null;
         }}
       >
-        {colors.map((c, i) => (
+        {colors.map((c, i) => loadedIndices.has(i) && (
           <Image
             key={c.id}
             src={c.img}

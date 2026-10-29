@@ -5,8 +5,7 @@ import Details from "@/components/Details";
 import Delivery from "@/components/Delivery";
 import Faq from "@/components/Faq";
 import FooterCta from "@/components/FooterCta";
-import StickyOrderBar from "@/components/StickyOrderBar";
-import OrderModal from "@/components/OrderModal";
+import { StickyOrderBar, OrderModal } from "@/components/ClientWrappers";
 
 export default function Page() {
   return (
